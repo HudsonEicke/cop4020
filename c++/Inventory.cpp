@@ -126,7 +126,7 @@ void Inventory::menu()
         }
         else if(input.compare("total") == 0)
         {
-            std::cout << "Total price of the books is " << getRealTotal() << std::endl;
+            std::cout << "Total price of the books is " << std::to_string(getRealTotal()) << std::endl;
         }
         else if(input.compare("done") == 0)
         {
