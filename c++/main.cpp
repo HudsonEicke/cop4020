@@ -1,6 +1,8 @@
+//File for setting up program run
 #include <iostream>
 #include "Inventory.h"
 
+//Main function takes user input for file name then creates inventory class and then calls menu function
 int main()
 {
     std::string input;
