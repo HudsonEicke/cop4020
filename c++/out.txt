@@ -1,0 +1,25 @@
+Enter filename 
+bookdata.txt 
+Enter option search BOOKNAME/all/total/done
+Searched book name: nine 
+No result found 
+ 
+Enter option search BOOKNAME/all/total/done
+Searched book name: Nin 
+Spell Book:NinethGate  price:800.000000 
+ 
+Enter option search BOOKNAME/all/total/done
+The book/s in the inventory is/are 
+Literature Book:hamlet price:126.400000 
+Speaking Book:necronomicon price:551.089000 
+Literature Book:black price:151.200000 
+Literature Book:othello price:12.400000 
+Spell Book:NinethGate price:800.000000 
+ 
+Enter option search BOOKNAME/all/total/done
+Total price of the books is 1641.089000 
+ 
+Enter option search BOOKNAME/all/total/done
+Invalid option 
+ 
+Enter option search BOOKNAME/all/total/done

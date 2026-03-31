@@ -1,0 +1,2 @@
+Enter filename
+Error opening file nonexistent.txt
