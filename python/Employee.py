@@ -11,10 +11,10 @@ class Employee:
         self.salary = salary
     
     #takes a record line and converts it to the corresponding employee class
-    @classmethod
-    def createEmployee(cls, record: str):
+    @staticmethod
+    def createEmployee(record: str) -> "Employee":
         recordSplit = record.split(",")
-        return cls(int(recordSplit[0]), recordSplit[1], recordSplit[2], int(recordSplit[3]), float(recordSplit[4]), int(recordSplit[5]))
+        return Employee(int(recordSplit[0]), recordSplit[1], recordSplit[2], int(recordSplit[3]), float(recordSplit[4]), int(recordSplit[5]))
     
     #returns the employees rating based on their score
     def rating(self) -> str:
@@ -28,11 +28,11 @@ class Employee:
             return "Bad"
     
     #checks if the current employee is less than the other employee
-    def __lt__(self, other) -> bool:
+    def __lt__(self, other: "Employee") -> bool:
         return self.idNum < other.idNum
     
     #checks if the current employee equals the other employee
-    def __eq__(self, other) -> bool:
+    def __eq__(self, other: "Employee") -> bool:
         return self.idNum == other.idNum and self.name == other.name and self.dept == other.dept and self.age == other.age and self.score == other.score and self.salary == other.salary
     
     #returns the string representation of the employee
