@@ -15,8 +15,8 @@ Engineering Department:
 
 HR Department:
 - Employees: 1
-- Average Performance: 72.0
-- Average Salary: 52000.0
+- Average Performance: 72.00
+- Average Salary: 52000.00
 
 Marketing Department:
 - Employees: 3
