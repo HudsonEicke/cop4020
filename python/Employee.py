@@ -1,4 +1,6 @@
 class Employee:
+
+    #initializes the employee class and all variables based on the parameters
     def __init__(self, idNum: int, name: str, dept: str, age: int, score: float, salary: int):
         self.idNum = idNum
         self.name = name
@@ -7,11 +9,13 @@ class Employee:
         self.score = score
         self.salary = salary
     
+    #takes a record line and converts it to the corresponding employee class
     @classmethod
     def createEmployee(cls, record: str):
         recordSplit = record.split(",")
         return cls(int(recordSplit[0]), recordSplit[1], recordSplit[2], int(recordSplit[3]), float(recordSplit[4]), int(recordSplit[5]))
     
+    #returns the employees rating based on their score
     def rating(self) -> str:
         if self.score > 90:
             return "Excellent"
@@ -22,11 +26,14 @@ class Employee:
         else:
             return "Bad"
     
+    #checks if the current employee is less than the other employee
     def __lt__(self, other) -> bool:
         return self.idNum < other.idNum
     
+    #checks if the current employee equals the other employee
     def __eq__(self, other) -> bool:
         return self.idNum == other.idNum and self.name == other.name and self.dept == other.dept and self.age == other.age and self.score == other.score and self.salary == other.salary
     
+    #returns the string representation of the employee
     def __repr__(self) -> str:
         return f"Name:{self.name}\nID:{self.idNum}\nDepartment:{self.dept}\nRating:{self.rating()}\nAge:{self.age}\nscore:{round(self.score, 2):.2f}\nSalary:{round(self.salary, 2):.2f}\n"
