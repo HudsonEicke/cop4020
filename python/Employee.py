@@ -1,3 +1,4 @@
+#the employee class is used to store information on each employee
 class Employee:
 
     #initializes the employee class and all variables based on the parameters

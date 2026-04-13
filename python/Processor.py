@@ -1,11 +1,15 @@
+#the processor class handles all program logic including user input for any commands. it also stores all employee records in a dictionary
 from Employee import Employee
 
 class Processor:
+
+    #initializes the Processor class and calls read file to load all employees
     def __init__(self, fname: str):
         self.fname = fname
         self.employees = {}
         self.readFile()
 
+    #reads all employee data out of the file or if the file fails to open displays a message and exits the program
     def readFile(self) -> None:
         try:
             with open(self.fname, 'r') as file:
@@ -28,6 +32,7 @@ class Processor:
             print("cannot open file")
             quit()
     
+    #prints all of the employees sorted by department and id number
     def printAllEmployees(self) -> None:
         keys = list(self.employees.keys())
         keys.sort()
@@ -36,6 +41,7 @@ class Processor:
             for employee in self.employees[key]:
                 print(str(employee))
     
+    #finds all employees with the provided searched string in their name (case insensitive)
     def findEmployee(self, searched: str) -> list[Employee]:
         foundEmployees = []
 
@@ -48,6 +54,7 @@ class Processor:
     
         return foundEmployees
     
+    #first calls the the find employees function then displays the number of employees and all found employees found
     def printSearchResult(self, searched: str) -> None:
         foundEmployees = self.findEmployee(searched)
 
@@ -58,9 +65,11 @@ class Processor:
             for employee in foundEmployees:
                 print(str(employee))
 
+    #returns the deparment stats in a string format
     def departmentStats(self, dept: str) -> str:
         return f"{dept} Department:\n- Employees: {len(self.employees[dept])}\n- Average Performance: {self.calculate_department_average(dept, 'score'):.2f}\n- Average Salary: {self.calculate_department_average(dept, 'salary'):.2f}\n"
 
+    #returns the average of either score or salary of the specified department rounded to 2 decimals
     def calculate_department_average(self, department: str, criteria: str) -> float:
         depEmployees = self.employees[department]
         depSize = len(depEmployees)
@@ -80,6 +89,7 @@ class Processor:
             
             return round(totalSalary / depSize, 2)
     
+    #returns the average of all averages of all departments rounded to 2 decimals
     def totalAvg(self, criteria: str) -> float:
         keys = list(self.employees.keys())
         depCount = len(keys)
@@ -90,6 +100,7 @@ class Processor:
 
         return round(averages / depCount, 2)
     
+    #generates a report of the provided file
     def generateReport(self) -> None:
         with open(f'report_{self.fname}', 'w') as file:
             file.write("=================\n")
@@ -112,6 +123,7 @@ class Processor:
                 file.write(self.departmentStats(key))
                 file.write("\n")
     
+    #menu function that allows users to select options
     def menu(self) -> None:
         print("Choice 1 For searching users")
         print("Choice 2 For generating report")
