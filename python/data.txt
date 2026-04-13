@@ -1,0 +1,7 @@
+1001,Alice Johnson,Engineering,29,88,75000
+1002,Bob Wilson,Marketing,34,76,68000
+1003,Carol Davis,Engineering,41,95,85000
+1004,David Brown,HR,28,72,52000
+1005,Eva Martinez,Marketing,36,89,71000
+1006,Frank Miller,Engineering,43,84,78000
+1007,Kurt Wagner,Marketing,27,78.3,67000
