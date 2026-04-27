@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Trip Cost vs Bus Ticket</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 2em; max-width: 600px; margin: auto; }
+    label { display: block; margin-top: 1em; }
+    #result { margin-top: 2em; width: 100%; height: 150px; }
+  </style>
+</head>
+<body>
+  <h1>Trip Cost Calculator</h1>
+
+  <form id="tripForm">
+    <label>
+      Total Distance (miles):
+      <input type="number" id="distance" step="0.1" />
+    </label>
+
+    <label>
+      Fuel Efficiency (mpg):
+      <input type="number" id="efficiency" step="0.1" />
+    </label>
+
+    <label>
+      Fuel Price (per gallon):
+      <input type="number" id="fuelPrice" step="0.01" />
+    </label>
+
+    <label>
+      Round Trip?
+      <input type="checkbox" id="roundTrip" />
+    </label>
+
+    <label>
+      Number of Passengers (including driver):
+      <input type="number" id="passengers" min="1" />
+    </label>
+
+    <label>
+      Bus Ticket Price (per person):
+      <input type="number" id="busPrice" step="0.01" />
+    </label>
+
+    <button type="submit">Calculate</button>
+  </form>
+
+  <label for="result">Result:</label>
+  <textarea id="result" readonly></textarea>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const tripForm = document.getElementById("tripForm");
+
+      tripForm.addEventListener("submit", function (event) {
+        //prevents the page from being refreshed
+        event.preventDefault();
+
+        //get distance and validate the value
+        let distance = Number.parseFloat(document.getElementById("distance").value);
+
+        if(!isInputValid(distance))
+        {
+          document.getElementById("result").value = "All fields should be positive";
+          return;
+        }
+
+        //get fuel efficiency and validate the value
+        let fuelEfficiency = Number.parseFloat(document.getElementById("efficiency").value);
+
+        if(!isInputValid(fuelEfficiency))
+        {
+          document.getElementById("result").value = "All fields should be positive";
+          return;
+        }
+
+        //get fuel price and validate the value
+        let fuelPrice = Number.parseFloat(document.getElementById("fuelPrice").value);
+
+        if(!isInputValid(fuelPrice))
+        {
+          document.getElementById("result").value = "All fields should be positive";
+          return;
+        }
+
+        //get is round trip
+        let isRoundTrip = document.getElementById("roundTrip").checked;
+
+        //double distance if is a round trip
+        if(isRoundTrip)
+        {
+          distance = distance * 2;
+        }
+
+        //get passengers and validate value
+        let passengers = Number.parseFloat(document.getElementById("passengers").value);
+
+        if(!isInputValid(passengers))
+        {
+          document.getElementById("result").value = "All fields should be positive";
+          return;
+        }
+
+        //get bus price and validate value
+        let busPrice = Number.parseFloat(document.getElementById("busPrice").value);
+
+        if(!isInputValid(busPrice))
+        {
+          document.getElementById("result").value = "All fields should be positive";
+          return;
+        }
+
+        //calculate the fuel used
+        let fuelUsed = distance / fuelEfficiency;
+
+        //calculate the total cost
+        let totalCost = fuelUsed * fuelPrice;
+
+        //calculate the cost per person
+        let costPerPerson = totalCost / passengers;
+
+        //calculate the bus trip cost
+        let busTripCost = busPrice * passengers;
+
+        //builds the first part of the output string
+        let outputResult = "Total Distance:" + distance.toFixed(1) + " miles\n";
+        outputResult += "Fuel Used:" + fuelUsed.toFixed(2) + " gallons\n";
+        outputResult += "Total Trip Cost:" + totalCost.toFixed(2) + "\n";
+        outputResult += "Cost per Person:" + costPerPerson.toFixed(2) + "\n";
+
+        //adds which method is better
+        if(totalCost < busTripCost)
+        {
+          outputResult += "Driving is cheaper than taking the bus!\n";
+        }
+        else
+        {
+          outputResult += "Going by bus is better.\n"
+        }
+
+        //displays the output
+        document.getElementById("result").value = outputResult;
+      });
+    });
+    
+    //checks if the input is valid or not
+    function isInputValid(value)
+    {
+      if(isNaN(value) || value <= 0)
+        return false;
+
+      return true;
+    }
+  </script>
+</body>
+</html>
